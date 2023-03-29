@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:07:01 by samartin          #+#    #+#             */
-/*   Updated: 2023/03/21 14:54:13 by samartin         ###   ########.fr       */
+/*   Updated: 2023/03/28 12:42:29 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
  */
 void	swap_nodes(t_bllist *node1, t_bllist *node2)
 {
-	t_bllist *swp;
-	
+	t_bllist	*swp;
+
 	if (node1 && node2)
 	{
 		swp = node1->next;

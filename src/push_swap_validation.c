@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   push_swap_validation.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 14:17:59 by samartin          #+#    #+#             */
-/*   Updated: 2023/03/29 16:38:50 by samartin         ###   ########.fr       */
+/*   Created: 2023/03/29 16:11:55 by samartin          #+#    #+#             */
+/*   Updated: 2023/03/29 16:29:16 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include "../libft/libft.h"
+#include "push_swap.h"
 
-t_bllist	*parse_args(size_t argc, char **argv);
-void		check_dupes(t_bllist *lst);
-void		error_exit(int code, t_bllist *stack_a, t_bllist *stack_b);
+void	check_dupes(t_bllist *lst)
+{
+	t_bllist	*i;
+	t_bllist	*node;
 
-#endif
+	node = ft_bllst_first(lst);
+	while (node)
+	{
+		i = ft_bllst_first(lst);
+		while (i)
+		{
+			if (node != i && node->content == i->content)
+				error_exit(103, lst, NULL);
+			i = i->next;
+		}
+		node = node->next;
+	}
+}
