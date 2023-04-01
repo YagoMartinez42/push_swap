@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 14:17:59 by samartin          #+#    #+#             */
-/*   Updated: 2023/03/29 16:38:50 by samartin         ###   ########.fr       */
+/*   Updated: 2023/03/31 16:05:11 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 
 t_bllist	*parse_args(size_t argc, char **argv);
 void		check_dupes(t_bllist *lst);
+void		check_int_sized(t_bllist *lst);
 void		error_exit(int code, t_bllist *stack_a, t_bllist *stack_b);
+void		swap(t_bllist **top);
+void		push(t_bllist **stack_u, t_bllist **stack_d);
+void		rotate(t_bllist **stack);
+void		rev_rotate(t_bllist **stack);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: samartin <samartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/21 13:44:34 by samartin          #+#    #+#              #
-#    Updated: 2023/03/28 13:49:44 by samartin         ###   ########.fr        #
+#    Updated: 2023/04/01 16:52:03 by samartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ LIBFT	:= libft.a
 VPATH	:= libft src
 CFLAGS	:= -Wall -Wextra -Werror
 RM		:= rm -rf
-SRC		:= push_swap.c push_swap_parse.c
+SRC		:= push_swap.c push_swap_exit.c push_swap_parse.c \
+			push_swap_commands.c push_swap_validation.c
 OBJ		:= ${SRC:.c=.o}
 
 all: ${NAME}

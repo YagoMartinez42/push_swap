@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:11:55 by samartin          #+#    #+#             */
-/*   Updated: 2023/03/29 16:29:16 by samartin         ###   ########.fr       */
+/*   Updated: 2023/03/30 15:01:45 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,16 @@ void	check_dupes(t_bllist *lst)
 			i = i->next;
 		}
 		node = node->next;
+	}
+}
+
+void	check_int_sized(t_bllist *lst)
+{
+	lst = ft_bllst_first(lst);
+	while (lst)
+	{
+		if (lst->content > __INT_MAX__ || lst->content < (-__INT_MAX__)-1 )
+			error_exit(104, lst, NULL);
+		lst = lst->next;
 	}
 }
