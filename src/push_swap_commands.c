@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:14:33 by samartin          #+#    #+#             */
-/*   Updated: 2023/04/01 17:14:12 by samartin         ###   ########.fr       */
+/*   Updated: 2023/04/01 17:57:47 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,22 @@ void	swap(t_bllist **top)
 	if (top)
 	{
 		subtop = (*top)->next;
-    	if (*top && subtop)
-    	{
-	        (*top)->next = subtop->next;
-            subtop->next->prev = *top;
+		if (*top && subtop)
+		{
+			(*top)->next = subtop->next;
+			subtop->next->prev = *top;
 			subtop->prev = NULL;
 			subtop->next = *top;
-        	(*top)->prev = subtop;
+			(*top)->prev = subtop;
 			*top = subtop;
 		}
-    }
+	}
 }
 
 void	push(t_bllist **stack_d, t_bllist **stack_i)
 {
 	t_bllist	*node;
-	
+
 	if (stack_i && stack_d && *stack_d)
 	{
 		node = *stack_d;
