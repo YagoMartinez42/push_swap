@@ -6,13 +6,13 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 14:17:41 by samartin          #+#    #+#             */
-/*   Updated: 2023/04/01 17:08:41 by samartin         ###   ########.fr       */
+/*   Updated: 2023/04/03 18:10:20 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void print_stacks(t_bllist *stack_a, t_bllist *stack_b) // TEST ONLYYY!!!
+void print_stacks(t_bllist *stack_a, t_bllist *stack_b) // TEST ONLY!!!
 {
 	while (stack_a)
 	{
@@ -31,19 +31,8 @@ char	*push_swap_command_list_generation(t_bllist *stack_a)
 {
 	t_bllist	*stack_b;
 
-	stack_b = NULL;
-	print_stacks(stack_a, stack_b);
-	push(&stack_a, &stack_b);
-	print_stacks(stack_a, stack_b);
-	swap(&stack_a);
-	print_stacks(stack_a, stack_b);
-	rotate(&stack_a);
-	print_stacks(stack_a, stack_b);
-	push(&stack_b, &stack_a);
-	print_stacks(stack_a, stack_b);
-	rev_rotate(&stack_a);
-	rev_rotate(&stack_b);
-	print_stacks(stack_a, stack_b);
+	if (is_sorted(stack_a))
+		error_exit(105, stack_a, NULL);
 	return ("");
 }
 

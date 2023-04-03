@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 14:17:59 by samartin          #+#    #+#             */
-/*   Updated: 2023/03/31 16:05:11 by samartin         ###   ########.fr       */
+/*   Updated: 2023/04/03 18:04:17 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ void		swap(t_bllist **top);
 void		push(t_bllist **stack_u, t_bllist **stack_d);
 void		rotate(t_bllist **stack);
 void		rev_rotate(t_bllist **stack);
+int			is_sorted(t_bllist *lst);
 
 #endif
