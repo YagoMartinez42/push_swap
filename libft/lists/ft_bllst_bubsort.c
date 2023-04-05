@@ -6,17 +6,13 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:07:01 by samartin          #+#    #+#             */
-/*   Updated: 2023/03/28 12:42:29 by samartin         ###   ########.fr       */
+/*   Updated: 2023/04/04 12:47:54 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lists.h"
 #include "../libft.h"
-/**
- * Swap the node with the next node in the list.
- * 
- * @param node the node to swap
- */
+
 void	swap_nodes(t_bllist *node1, t_bllist *node2)
 {
 	t_bllist	*swp;

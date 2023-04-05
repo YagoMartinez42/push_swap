@@ -6,11 +6,16 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:11:18 by samartin          #+#    #+#             */
-/*   Updated: 2023/04/03 18:08:18 by samartin         ###   ########.fr       */
+/*   Updated: 2023/04/05 15:11:08 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	del_idxnode(void *content)
+{
+	free(content);
+}
 
 /**
  * It prints an error message and exits the program. Subject states that giving
@@ -21,7 +26,7 @@
  * @param stack_a The first stack.
  * @param stack_b The second stack.
  */
-void	error_exit(int code, t_bllist *stack_a, t_bllist *stack_b)
+void	error_exit(int code, t_list *stack_a, t_list *stack_b)
 {
 	if (code == 101)
 		code = 101;
@@ -36,8 +41,8 @@ void	error_exit(int code, t_bllist *stack_a, t_bllist *stack_b)
 	else
 		ft_putstr_fd("Error\n(Untracked error)\n", 2);
 	if (stack_a)
-		ft_bllst_clear(stack_a);
+		ft_lst_clear(stack_a, del_idxnode);
 	if (stack_b)
-		ft_bllst_clear(stack_b);
+		ft_lst_clear(stack_b, del_idxnode);
 	exit(code);
 }

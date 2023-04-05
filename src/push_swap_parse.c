@@ -6,55 +6,11 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:36:01 by samartin          #+#    #+#             */
-/*   Updated: 2023/03/29 16:37:24 by samartin         ###   ########.fr       */
+/*   Updated: 2023/04/05 15:12:02 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static int	*ps_atoi(char **str, int *nbp)
-{
-	long long	nb;
-	int			sign;
-
-	nb = 0;
-	sign = 1;
-	while (**str == ' ')
-		(*str)++;
-	if (**str == '-')
-		sign = -1;
-	if (**str == '-' || **str == '+')
-		(*str)++;
-	while (**str >= '0' && **str <= '9')
-	{
-		nb = (nb * 10) + **str - '0';
-		(*str)++;
-	}
-	nb = nb * sign;
-	if (nb > __INT_MAX__ || nb < (-(__INT_MAX__) - 1) || \
-			(**str != ' ' && **str != '\0'))
-		return (NULL);
-	else
-	{
-		*nbp = (int)nb;
-		return (nbp);
-	}
-}
-
-static void	ws_to_space(char *str)
-{
-	size_t	len;
-	size_t	i;
-
-	len = ft_strlen(str);
-	i = 0;
-	while (i < len)
-	{
-		if (str[i] >= '\t' && str[i] <= '\r')
-			str[i] = ' ';
-		i++;
-	}
-}
 
 static char	*make_args_single(size_t argc, char **argv)
 {
@@ -81,13 +37,26 @@ static char	*make_args_single(size_t argc, char **argv)
 	return (parastr);
 }
 
-static t_bllist	*make_stack(char *parastr)
+t_list	*ft_node_into_list(t_list *lst, int nbr)
 {
-	char		*aux;
-	t_bllist	*node;
-	t_bllist	*lst;
-	int			nbr;
-	int			*nbrp;
+	t_list		*node;
+	t_idxd_node	*content;
+	
+	content = malloc(sizeof(t_idxd_node));
+	content->value = nbr;
+	node = ft_lst_new(content);
+	if (!node)
+		return (NULL);
+	ft_lst_add_back(&lst, node);
+	return (lst);
+}
+
+static t_list	*make_stack(char *parastr)
+{
+	char	*aux;
+	t_list	*lst;
+	int		nbr;
+	int		*nbrp;
 
 	nbrp = &nbr;
 	aux = parastr;
@@ -97,21 +66,20 @@ static t_bllist	*make_stack(char *parastr)
 		nbrp = ps_atoi(&parastr, nbrp);
 		if (!nbrp)
 			return (NULL);
-		node = ft_bllst_new(nbr);
-		if (!node)
+		lst = ft_node_into_list(lst, nbr);
+		if (!lst)
 			return (NULL);
-		ft_bllst_add_back(&lst, node);
 	}
 	free(aux);
-	if (ft_bllst_size(node) < 1)
+	if (ft_lstsize(lst) < 1)
 		return (NULL);
-	return (ft_bllst_first(node));
+	return (lst);
 }
 
-t_bllist	*parse_args(size_t argc, char **argv)
+t_list	*parse_args(size_t argc, char **argv)
 {
-	char		*parastr;
-	t_bllist	*lst;
+	char	*parastr;
+	t_list	*lst;
 
 	parastr = make_args_single(argc, argv);
 	lst = make_stack(parastr);

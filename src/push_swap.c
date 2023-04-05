@@ -6,13 +6,13 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 14:17:41 by samartin          #+#    #+#             */
-/*   Updated: 2023/04/03 18:10:20 by samartin         ###   ########.fr       */
+/*   Updated: 2023/04/04 14:41:08 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void print_stacks(t_bllist *stack_a, t_bllist *stack_b) // TEST ONLY!!!
+void print_stacks(t_list *stack_a, t_list *stack_b) // TEST ONLY!!!
 {
 	while (stack_a)
 	{
@@ -27,9 +27,9 @@ void print_stacks(t_bllist *stack_a, t_bllist *stack_b) // TEST ONLY!!!
 	ft_printf("\n");
 }
 
-char	*push_swap_command_list_generation(t_bllist *stack_a)
+char	*push_swap_command_list_generation(t_list *stack_a)
 {
-	t_bllist	*stack_b;
+	t_list	*stack_b;
 
 	if (is_sorted(stack_a))
 		error_exit(105, stack_a, NULL);
@@ -43,8 +43,8 @@ void	check_leaks(void)
 
 int	main(int argc, char **argv)
 {
-	t_bllist	*lst;
-	char		*ps_out;
+	t_list	*lst;
+	char	*ps_out;
 
 	atexit(check_leaks); // ding ! ding !
 	lst = NULL;
@@ -56,6 +56,6 @@ int	main(int argc, char **argv)
 	check_int_sized(lst);
 	ps_out = push_swap_command_list_generation(lst);
 	//ft_printf("%s", ps_out);
-	ft_bllst_clear(lst);
+	ft_lst_clear(lst);
 	return (0);
 }

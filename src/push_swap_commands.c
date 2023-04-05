@@ -6,80 +6,65 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:14:33 by samartin          #+#    #+#             */
-/*   Updated: 2023/04/01 17:57:47 by samartin         ###   ########.fr       */
+/*   Updated: 2023/04/05 16:44:36 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_bllist **top)
+void	swap(t_list **top)
 {
-	t_bllist	*subtop;
+	t_list	*subtop;
 
-	if (top)
+	if (top && (*top)->next)
 	{
 		subtop = (*top)->next;
-		if (*top && subtop)
-		{
-			(*top)->next = subtop->next;
-			subtop->next->prev = *top;
-			subtop->prev = NULL;
-			subtop->next = *top;
-			(*top)->prev = subtop;
-			*top = subtop;
-		}
+		(*top)->next = subtop->next;
+		subtop->next = *top;
+		*top = subtop;
 	}
 }
 
-void	push(t_bllist **stack_d, t_bllist **stack_i)
+void	push(t_list **stack_d, t_list **stack_i)
 {
-	t_bllist	*node;
+	t_list	*node;
 
 	if (stack_i && stack_d && *stack_d)
 	{
 		node = *stack_d;
-		if (node->next)
-			node->next->prev = NULL;
-		*stack_d = node->next;
-		if (*stack_i)
-			(*stack_i)->prev = node;
+		*stack_d = (*stack_d)->next;
 		node->next = *stack_i;
 		*stack_i = node;
 	}
 }
 
-void	rotate(t_bllist **stack)
+void	rotate(t_list **stack)
 {
-	t_bllist	*last;
+	t_list	*node;
 
-	if (stack && *stack)
-		last = ft_bllst_last(*stack);
-	else
-		return ;
-	if (last && last != *stack)
+	if (stack && *stack && (*stack)->next)
 	{
-		(*stack)->prev = last;
-		last->next = *stack;
-		(*stack)->next->prev = NULL;
+		node = *stack;
 		*stack = (*stack)->next;
-		last->next->next = NULL;
+		node->next = NULL;
+		ft_lstadd_back(stack, node);
 	}
 }
 
-void	rev_rotate(t_bllist **stack)
+void	rev_rotate(t_list **stack)
 {
-	t_bllist	*last;
+	t_list	*last;
+	t_list	*prev;
 
-	if (stack && *stack)
-		last = ft_bllst_last(*stack);
-	else
-		return ;
-	if (last && last != *stack)
+	if (stack && *stack && (*stack)->next)
 	{
+		last = *stack;
+		while (last->next)
+		{
+			prev = last;
+			last = last->next;
+		}
+		prev->next = NULL;
 		last->next = *stack;
-		(*stack)->prev = last;
-		last->prev->next = NULL;
 		*stack = last;
-		last->prev = NULL;
-	}
 }
