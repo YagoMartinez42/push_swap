@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:36:01 by samartin          #+#    #+#             */
-/*   Updated: 2023/04/05 15:12:02 by samartin         ###   ########.fr       */
+/*   Updated: 2023/04/11 16:01:32 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,16 @@ t_list	*ft_node_into_list(t_list *lst, int nbr)
 {
 	t_list		*node;
 	t_idxd_node	*content;
-	
+
 	content = malloc(sizeof(t_idxd_node));
+	if (!content)
+		return (NULL);
 	content->value = nbr;
-	node = ft_lst_new(content);
+	content->idx = -1;
+	node = ft_lstnew(content);
 	if (!node)
 		return (NULL);
-	ft_lst_add_back(&lst, node);
+	ft_lstadd_back(&lst, node);
 	return (lst);
 }
 

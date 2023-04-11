@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:14:33 by samartin          #+#    #+#             */
-/*   Updated: 2023/04/05 16:44:36 by samartin         ###   ########.fr       */
+/*   Updated: 2023/04/11 15:44:42 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,5 @@ void	rev_rotate(t_list **stack)
 		prev->next = NULL;
 		last->next = *stack;
 		*stack = last;
+	}
 }

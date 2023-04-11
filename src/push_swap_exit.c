@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:11:18 by samartin          #+#    #+#             */
-/*   Updated: 2023/04/05 15:11:08 by samartin         ###   ########.fr       */
+/*   Updated: 2023/04/11 15:42:08 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	error_exit(int code, t_list *stack_a, t_list *stack_b)
 	else
 		ft_putstr_fd("Error\n(Untracked error)\n", 2);
 	if (stack_a)
-		ft_lst_clear(stack_a, del_idxnode);
+		ft_lstclear(&stack_a, del_idxnode);
 	if (stack_b)
-		ft_lst_clear(stack_b, del_idxnode);
+		ft_lstclear(&stack_b, del_idxnode);
 	exit(code);
 }
