@@ -6,13 +6,13 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:14:33 by samartin          #+#    #+#             */
-/*   Updated: 2023/04/11 15:44:42 by samartin         ###   ########.fr       */
+/*   Updated: 2023/04/14 12:41:11 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_list **top)
+void	ps_swap(t_list **top)
 {
 	t_list	*subtop;
 
@@ -25,20 +25,20 @@ void	swap(t_list **top)
 	}
 }
 
-void	push(t_list **stack_d, t_list **stack_i)
+void	ps_push(t_list **stack_o, t_list **stack_d)
 {
 	t_list	*node;
 
-	if (stack_i && stack_d && *stack_d)
+	if (stack_d && stack_o && *stack_o)
 	{
-		node = *stack_d;
-		*stack_d = (*stack_d)->next;
-		node->next = *stack_i;
-		*stack_i = node;
+		node = *stack_o;
+		*stack_o = (*stack_o)->next;
+		node->next = *stack_d;
+		*stack_d = node;
 	}
 }
 
-void	rotate(t_list **stack)
+void	ps_rotate(t_list **stack)
 {
 	t_list	*node;
 
@@ -51,7 +51,7 @@ void	rotate(t_list **stack)
 	}
 }
 
-void	rev_rotate(t_list **stack)
+void	ps_rev_rotate(t_list **stack)
 {
 	t_list	*last;
 	t_list	*prev;

@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:58:01 by samartin          #+#    #+#             */
-/*   Updated: 2023/04/11 16:01:23 by samartin         ###   ########.fr       */
+/*   Updated: 2023/04/13 11:47:17 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int	is_sorted(t_list *lst)
 {
 	while (lst && lst->next)
 	{
-		if (lst->content > lst->next->content)
+		if (((t_idxd_node *)lst->content)->value > \
+				((t_idxd_node *)lst->next->content)->value)
 			return (0);
 		lst = lst->next;
 	}
@@ -34,7 +35,8 @@ void	check_dupes(t_list *lst)
 		i = node->next;
 		while (i)
 		{
-			if (node->content == i->content)
+			if (((t_idxd_node *)node->content)->value == \
+					((t_idxd_node *)i->content)->value)
 				error_exit(103, lst, NULL);
 			i = i->next;
 		}

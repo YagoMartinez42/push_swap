@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 14:17:41 by samartin          #+#    #+#             */
-/*   Updated: 2023/04/11 16:01:05 by samartin         ###   ########.fr       */
+/*   Updated: 2023/04/17 12:49:11 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,8 @@ void	index_stack(t_list **stack)
 	size_t	i;
 	int		min;
 
-	stack_len = 0;
+	stack_len = ft_lstsize(*stack);
 	node = *stack;
-	while (node)
-	{
-		node = node->next;
-		stack_len++;
-	}
 	i = 0;
 	while (i < stack_len)
 	{
@@ -61,7 +56,11 @@ void	index_stack(t_list **stack)
 			}
 			node = node->next;
 		}
-		((t_idxd_node *)node->content)->idx = i;
+		if (n2idx)
+		{
+			((t_idxd_node *)n2idx->content)->idx = i;
+			ft_printf("Len: %i, i: %i, addr: %p", stack_len, i, n2idx);
+		}
 		i++;
 	}
 }
@@ -69,14 +68,27 @@ void	index_stack(t_list **stack)
 void	push_swap_command_list_generation(t_list *stack_a)
 {
 	t_list	*stack_b;
+	size_t	stack_len;
+	int		idx;
 
-	stack_b = NULL;
 	if (is_sorted(stack_a))
 		error_exit(105, stack_a, NULL);
+	stack_b = NULL;
+	stack_len = ft_lstsize(stack_a);
+	//size 3 & size 5 cases?
+	//if (stack_len < 4)
+	//general case
 	//index
+	print_stacks(stack_a, NULL);
 	index_stack(&stack_a);
-	print_stacks(stack_a, stack_b);
+	print_stacks(stack_a, NULL);
 	//algorithm
+	idx = 0;
+	while (stack_b || !is_sorted(stack_a))
+	{
+		idx = not_a_bubble_sort(&stack_a, &stack_b, idx, &stack_len);
+		print_stacks (stack_a, stack_b);
+	}
 	//printf command
 	//is_sorted(stack_a) && !stack_b : break;
 }
