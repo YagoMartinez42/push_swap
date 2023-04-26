@@ -6,24 +6,24 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 14:17:41 by samartin          #+#    #+#             */
-/*   Updated: 2023/04/17 12:49:11 by samartin         ###   ########.fr       */
+/*   Updated: 2023/04/25 16:36:48 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_stacks(t_list *stack_a, t_list *stack_b) // TEST ONLY!!!
+void	print_stacks(t_idxlst *stack_a, t_idxlst *stack_b) // TEST ONLY!!!
 {
 	while (stack_a)
 	{
 		if (stack_a)
 		{
-			ft_printf("%i | %i ", ((t_idxd_node *)stack_a->content)->value, ((t_idxd_node *)stack_a->content)->idx);
+			ft_printf("%i | %i ", stack_a->value, stack_a->idx);
 			stack_a = stack_a->next;
 		}
 		if (stack_b)
 		{
-			ft_printf("B: %i | %i", ((t_idxd_node *)stack_b->content)->value, ((t_idxd_node *)stack_b->content)->idx);
+			ft_printf("B: %i | %i", stack_b->value, stack_b->idx);
 			stack_b = stack_b->next;
 		}
 		ft_printf("\n");
@@ -31,66 +31,25 @@ void	print_stacks(t_list *stack_a, t_list *stack_b) // TEST ONLY!!!
 	ft_printf("\n");
 }
 
-void	index_stack(t_list **stack)
+t_idxlst	*push_swap_command_list_generation(t_idxlst *stack_a)
 {
-	t_list	*node;
-	t_list	*n2idx;
-	size_t	stack_len;
-	size_t	i;
-	int		min;
-
-	stack_len = ft_lstsize(*stack);
-	node = *stack;
-	i = 0;
-	while (i < stack_len)
-	{
-		min = __INT_MAX__;
-		node = *stack;
-		while (node)
-		{
-			if (((t_idxd_node *)node->content)->idx == -1 && \
-					((t_idxd_node *)node->content)->value < min)
-			{
-				n2idx = node;
-				min = ((t_idxd_node *)node->content)->value;
-			}
-			node = node->next;
-		}
-		if (n2idx)
-		{
-			((t_idxd_node *)n2idx->content)->idx = i;
-			ft_printf("Len: %i, i: %i, addr: %p", stack_len, i, n2idx);
-		}
-		i++;
-	}
-}
-
-void	push_swap_command_list_generation(t_list *stack_a)
-{
-	t_list	*stack_b;
-	size_t	stack_len;
-	int		idx;
 
 	if (is_sorted(stack_a))
 		error_exit(105, stack_a, NULL);
-	stack_b = NULL;
-	stack_len = ft_lstsize(stack_a);
-	//size 3 & size 5 cases?
-	//if (stack_len < 4)
-	//general case
-	//index
-	print_stacks(stack_a, NULL);
-	index_stack(&stack_a);
-	print_stacks(stack_a, NULL);
-	//algorithm
-	idx = 0;
-	while (stack_b || !is_sorted(stack_a))
+	if (ps_lst_size(stack_a) < 4)
+		ps_sort_3(&stack_a);
+	else if (ps_lst_size(stack_a) < 6)
 	{
-		idx = not_a_bubble_sort(&stack_a, &stack_b, idx, &stack_len);
-		print_stacks (stack_a, stack_b);
+		index_stack(&stack_a);
+		ps_sort_5(&stack_a);
 	}
-	//printf command
-	//is_sorted(stack_a) && !stack_b : break;
+	else
+	{
+		index_stack(&stack_a);
+		ps_rotative_insertion(stack_a);
+		print_stacks(stack_a, NULL);		
+	}
+	return (stack_a);
 }
 
 void	check_leaks(void)
@@ -100,7 +59,7 @@ void	check_leaks(void)
 
 int	main(int argc, char **argv)
 {
-	t_list	*lst;
+	t_idxlst	*lst;
 
 	atexit(check_leaks); // ding ! ding !
 	lst = NULL;
@@ -109,7 +68,7 @@ int	main(int argc, char **argv)
 	lst = parse_args(argc - 1, argv);
 	check_dupes(lst);
 	check_int_sized(lst);
-	push_swap_command_list_generation(lst);
-	ft_lstclear(&lst, del_idxnode);
+	lst = push_swap_command_list_generation(lst);
+	lst = ps_lst_clear(lst);
 	return (0);
 }

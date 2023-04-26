@@ -6,15 +6,15 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:14:33 by samartin          #+#    #+#             */
-/*   Updated: 2023/04/14 12:41:11 by samartin         ###   ########.fr       */
+/*   Updated: 2023/04/20 15:41:56 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_swap(t_list **top)
+void	ps_swap(t_idxlst **top)
 {
-	t_list	*subtop;
+	t_idxlst	*subtop;
 
 	if (top && (*top)->next)
 	{
@@ -25,9 +25,9 @@ void	ps_swap(t_list **top)
 	}
 }
 
-void	ps_push(t_list **stack_o, t_list **stack_d)
+void	ps_push(t_idxlst **stack_o, t_idxlst **stack_d)
 {
-	t_list	*node;
+	t_idxlst	*node;
 
 	if (stack_d && stack_o && *stack_o)
 	{
@@ -38,23 +38,23 @@ void	ps_push(t_list **stack_o, t_list **stack_d)
 	}
 }
 
-void	ps_rotate(t_list **stack)
+void	ps_rotate(t_idxlst **stack)
 {
-	t_list	*node;
+	t_idxlst	*node;
 
 	if (stack && *stack && (*stack)->next)
 	{
 		node = *stack;
 		*stack = (*stack)->next;
 		node->next = NULL;
-		ft_lstadd_back(stack, node);
+		ps_lst_add_back(stack, node);
 	}
 }
 
-void	ps_rev_rotate(t_list **stack)
+void	ps_rev_rotate(t_idxlst **stack)
 {
-	t_list	*last;
-	t_list	*prev;
+	t_idxlst	*last;
+	t_idxlst	*prev;
 
 	if (stack && *stack && (*stack)->next)
 	{

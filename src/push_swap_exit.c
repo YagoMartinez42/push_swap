@@ -6,16 +6,11 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:11:18 by samartin          #+#    #+#             */
-/*   Updated: 2023/04/11 15:42:08 by samartin         ###   ########.fr       */
+/*   Updated: 2023/04/25 13:18:37 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	del_idxnode(void *content)
-{
-	free(content);
-}
 
 /**
  * It prints an error message and exits the program. Subject states that giving
@@ -26,7 +21,7 @@ void	del_idxnode(void *content)
  * @param stack_a The first stack.
  * @param stack_b The second stack.
  */
-void	error_exit(int code, t_list *stack_a, t_list *stack_b)
+void	error_exit(int code, t_idxlst *stack_a, t_idxlst *stack_b)
 {
 	if (code == 101)
 		code = 101;
@@ -37,12 +32,12 @@ void	error_exit(int code, t_list *stack_a, t_list *stack_b)
 	else if (code == 104)
 		ft_putstr_fd("Error\nNumbers out of range of INT\n", 2);
 	else if (code == 105)
-		code = 105;
+		code = 0;
 	else
 		ft_putstr_fd("Error\n(Untracked error)\n", 2);
 	if (stack_a)
-		ft_lstclear(&stack_a, del_idxnode);
+		stack_a = ps_lst_clear(stack_a);
 	if (stack_b)
-		ft_lstclear(&stack_b, del_idxnode);
+		stack_a = ps_lst_clear(stack_b);
 	exit(code);
 }

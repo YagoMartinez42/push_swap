@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:36:01 by samartin          #+#    #+#             */
-/*   Updated: 2023/04/11 16:01:32 by samartin         ###   ########.fr       */
+/*   Updated: 2023/04/19 13:28:59 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,29 +37,23 @@ static char	*make_args_single(size_t argc, char **argv)
 	return (parastr);
 }
 
-t_list	*ft_node_into_list(t_list *lst, int nbr)
+t_idxlst	*ft_node_into_list(t_idxlst *lst, int nbr)
 {
-	t_list		*node;
-	t_idxd_node	*content;
+	t_idxlst		*node;
 
-	content = malloc(sizeof(t_idxd_node));
-	if (!content)
-		return (NULL);
-	content->value = nbr;
-	content->idx = -1;
-	node = ft_lstnew(content);
+	node = ps_lst_new(nbr);
 	if (!node)
 		return (NULL);
-	ft_lstadd_back(&lst, node);
+	ps_lst_add_back(&lst, node);
 	return (lst);
 }
 
-static t_list	*make_stack(char *parastr)
+static t_idxlst	*make_stack(char *parastr)
 {
-	char	*aux;
-	t_list	*lst;
-	int		nbr;
-	int		*nbrp;
+	char		*aux;
+	t_idxlst	*lst;
+	int			nbr;
+	int			*nbrp;
 
 	nbrp = &nbr;
 	aux = parastr;
@@ -74,15 +68,15 @@ static t_list	*make_stack(char *parastr)
 			return (NULL);
 	}
 	free(aux);
-	if (ft_lstsize(lst) < 1)
+	if (ps_lst_size(lst) < 1)
 		return (NULL);
 	return (lst);
 }
 
-t_list	*parse_args(size_t argc, char **argv)
+t_idxlst	*parse_args(size_t argc, char **argv)
 {
-	char	*parastr;
-	t_list	*lst;
+	char		*parastr;
+	t_idxlst	*lst;
 
 	parastr = make_args_single(argc, argv);
 	lst = make_stack(parastr);

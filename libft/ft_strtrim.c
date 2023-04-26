@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 17:28:37 by samartin          #+#    #+#             */
-/*   Updated: 2022/10/01 11:34:12 by samartin         ###   ########.fr       */
+/*   Updated: 2023/04/21 16:01:59 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	*trim_it(char const *s1, char const *set, unsigned int *len)
 {
-	unsigned int	i;
+	int	i;
 
 	while (*s1)
 	{

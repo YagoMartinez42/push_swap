@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   push_swap_commands4.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 17:17:11 by samartin          #+#    #+#             */
-/*   Updated: 2023/04/21 16:00:34 by samartin         ###   ########.fr       */
+/*   Created: 2023/04/25 13:44:21 by samartin          #+#    #+#             */
+/*   Updated: 2023/04/25 13:56:11 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "push_swap.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+void	ps_rra(t_idxlst **stack_a)
 {
-	unsigned int	pos;
+	ps_rev_rotate(stack_a);
+	ft_printf("ra\n");
+}
 
-	pos = 0;
-	while (pos < n)
-	{	
-		if (((unsigned char *)s)[pos] == (unsigned char)c)
-			return ((void *)(s + pos));
-		pos++;
-	}
-	return (0);
+void	ps_rrb(t_idxlst **stack_b)
+{
+	ps_rev_rotate(stack_b);
+	ft_printf("rb\n");
+}
+
+void	ps_rrr(t_idxlst **stack_a, t_idxlst **stack_b)
+{
+	ps_rev_rotate(stack_a);
+	ps_rev_rotate(stack_b);
+	ft_printf("rr\n");
 }

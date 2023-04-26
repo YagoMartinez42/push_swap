@@ -6,7 +6,7 @@
 #    By: samartin <samartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/21 13:44:34 by samartin          #+#    #+#              #
-#    Updated: 2023/04/14 12:20:48 by samartin         ###   ########.fr        #
+#    Updated: 2023/04/25 13:57:54 by samartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,9 @@ NAME	:= push_swap
 CC		:= gcc
 LFTDIR  := libft
 LIBFT	:= libft.a
-VPATH	:= libft src
 CFLAGS	:= -Wall -Wextra -Werror
 RM		:= rm -rf
-SRC		:= push_swap.c push_swap_checks.c push_swap_commands.c push_swap_exit.c push_swap_parse.c push_swap_parse_utils.c push_swap_sorting_algs.c
+SRC		:= ./src/push_swap.c ./src/push_swap_checks.c ./src/push_swap_commands.c ./src/push_swap_commands2.c ./src/push_swap_commands3.c ./src/push_swap_commands4.c ./src/push_swap_exit.c ./src/push_swap_indexing.c ./src/push_swap_list.c ./src/push_swap_parse.c ./src/push_swap_parse_utils.c ./src/push_swap_short_cases_algs.c
 OBJ		:= ${SRC:.c=.o}
 
 all: ${NAME}

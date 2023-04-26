@@ -6,102 +6,43 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 13:08:13 by samartin          #+#    #+#             */
-/*   Updated: 2023/04/17 16:07:13 by samartin         ###   ########.fr       */
+/*   Updated: 2023/04/25 16:34:33 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int bb_do_rotation(t_list **stack_a, t_list **stack_b)
+static void	ps_dump_to_b(t_idxlst **stack_a, t_idxlst **stack_b)
 {
-	if (*stack_b && (*stack_b)->next && ((t_idxd_node *)(*stack_b)->content)->value < ((t_idxd_node *)(*stack_b)->content)->value)
-	{
-		ft_printf("rr\n");
-		ps_rotate(stack_b);
-	}
-	else
-		ft_printf("ra\n");
-	ps_rotate(stack_a);
-	return (1);
-}
+	int	stack_size;
+	int	pushes;
+	int	i;
 
-int bb_do_rev_rotation(t_list **stack_a, t_list **stack_b)
-{
-	if (*stack_b && (*stack_b)->next && ((t_idxd_node *)(*stack_b)->content)->value > ((t_idxd_node *)(*stack_b)->content)->value)
+	stack_size = ps_lst_size(*stack_a);
+	pushes = 0;
+	i = 0;
+	while (stack_size > 6 && i < stack_size && pushes < stack_size / 2)
 	{
-		ft_printf("rrr\n");
-		ps_rev_rotate(stack_b);
-	}
-	else
-		ft_printf("rra\n");
-	ps_rev_rotate(stack_a);
-	return (1);
-}
-
-int bb_do_swap(t_list **stack_a, t_list **stack_b)
-{
-	if (*stack_b && (*stack_b)->next && ((t_idxd_node *)(*stack_b)->content)->value < ((t_idxd_node *)(*stack_b)->content)->value)
-	{
-		ft_printf("ss\n");
-		ps_swap(stack_b);
-	}
-	else
-		ft_printf("sa\n");
-	ps_swap(stack_a);
-	return (1);
-}
-
-void bb_goto_zero (t_list **stack_a, t_list **stack_b, size_t len)
-{
-	if (((t_idxd_node *)(*stack_b)->content)->idx < (int)(len / 2))
-	{
-		while (((t_idxd_node *)(*stack_b)->content)->idx)
-			bb_do_rev_rotation(stack_a, stack_b);
-	}
-	else
-	{
-		while (((t_idxd_node *)(*stack_b)->content)->idx)
-			bb_do_rotation(stack_a, stack_b);		
-	}
-}
-
-int	not_a_bubble_sort(t_list **stack_a, t_list **stack_b, int i, size_t *len)
-{
-	static int endpoint = -1;
-
-	if (endpoint == -1)
-		endpoint = (int)*len;
-	if (*stack_b && *stack_a)
-	{
-		if (((t_idxd_node *)(*stack_b)->content)->idx == ((t_idxd_node *)(*stack_a)->next->content)->idx - 1)
+		if ((*stack_a)->idx <= stack_size / 2)
 		{
-			ft_printf("pa\n");
-			ps_push(stack_b, stack_a);
-			if (!is_sorted(*stack_a))
-				i += bb_do_rotation(stack_b, stack_a);
-		}
-	}
-	if (*stack_a && (*stack_a)->next)
-	{
-		if (((t_idxd_node *)(*stack_a)->content)->idx > ((t_idxd_node *)(*stack_a)->next->content)->idx)
-		{
-			if (((t_idxd_node *)(*stack_a)->content)->idx == (int)(len - 1))
-				i += bb_do_rotation(stack_a, stack_b);
-			if (ft_abs(((t_idxd_node *)(*stack_a)->content)->idx - i) > *len / 5)
-			{
-				ft_printf("pb\n");
-				ps_push(stack_a, stack_b);
-			}
-			else
-				bb_do_swap(stack_a, stack_b);
+			ps_pb(stack_a, stack_b);
+			pushes++;
 		}
 		else
-			i += bb_do_rotation(stack_a, stack_b);
-		if (i >= endpoint)
-		{
-			bb_goto_zero(stack_a, stack_b, *len);
-			endpoint--;
-		}
+			ps_ra(stack_a);
+		i++;
 	}
-	return(i);
+	while (stack_size - pushes > 3)
+	{
+		ps_pb(stack_a, stack_b);
+		pushes++;
+	}
+}
+
+void	ps_rotative_insertion(t_idxlst **stack_a)
+{
+	t_idxlst	*stack_b;
+
+	stack_b = NULL;
+	ps_dump_to_b(stack_a, &stack_b);
 }
