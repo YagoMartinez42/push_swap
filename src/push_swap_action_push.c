@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_commands.c                               :+:      :+:    :+:   */
+/*   push_swap_action_push.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:14:33 by samartin          #+#    #+#             */
-/*   Updated: 2023/04/20 15:41:56 by samartin         ###   ########.fr       */
+/*   Updated: 2023/04/26 13:19:38 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_swap(t_idxlst **top)
-{
-	t_idxlst	*subtop;
-
-	if (top && (*top)->next)
-	{
-		subtop = (*top)->next;
-		(*top)->next = subtop->next;
-		subtop->next = *top;
-		*top = subtop;
-	}
-}
-
-void	ps_push(t_idxlst **stack_o, t_idxlst **stack_d)
+static void	ps_push(t_idxlst **stack_o, t_idxlst **stack_d)
 {
 	t_idxlst	*node;
 
@@ -38,34 +25,14 @@ void	ps_push(t_idxlst **stack_o, t_idxlst **stack_d)
 	}
 }
 
-void	ps_rotate(t_idxlst **stack)
+void	ps_pa(t_idxlst **stack_a, t_idxlst **stack_b)
 {
-	t_idxlst	*node;
-
-	if (stack && *stack && (*stack)->next)
-	{
-		node = *stack;
-		*stack = (*stack)->next;
-		node->next = NULL;
-		ps_lst_add_back(stack, node);
-	}
+	ps_push(stack_b, stack_a);
+	ft_printf("pa\n");
 }
 
-void	ps_rev_rotate(t_idxlst **stack)
+void	ps_pb(t_idxlst **stack_a, t_idxlst **stack_b)
 {
-	t_idxlst	*last;
-	t_idxlst	*prev;
-
-	if (stack && *stack && (*stack)->next)
-	{
-		last = *stack;
-		while (last->next)
-		{
-			prev = last;
-			last = last->next;
-		}
-		prev->next = NULL;
-		last->next = *stack;
-		*stack = last;
-	}
+	ps_push(stack_a, stack_b);
+	ft_printf("pb\n");
 }

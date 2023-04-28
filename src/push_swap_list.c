@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 12:26:30 by samartin          #+#    #+#             */
-/*   Updated: 2023/04/25 13:12:48 by samartin         ###   ########.fr       */
+/*   Updated: 2023/04/28 14:19:03 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ t_idxlst	*ps_lst_new(long value)
 	new_node = (t_idxlst *)malloc(sizeof (t_idxlst));
 	if (new_node == NULL)
 		return (NULL);
+	ft_bzero(new_node, sizeof(t_idxlst));
 	new_node->value = value;
 	new_node->idx = -1;
 	new_node->next = NULL;

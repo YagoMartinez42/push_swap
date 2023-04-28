@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:11:18 by samartin          #+#    #+#             */
-/*   Updated: 2023/04/25 13:18:37 by samartin         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:56:15 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ void	error_exit(int code, t_idxlst *stack_a, t_idxlst *stack_b)
 	if (stack_a)
 		stack_a = ps_lst_clear(stack_a);
 	if (stack_b)
-		stack_a = ps_lst_clear(stack_b);
+		stack_b = ps_lst_clear(stack_b);
 	exit(code);
 }

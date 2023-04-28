@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 11:18:36 by samartin          #+#    #+#             */
-/*   Updated: 2023/04/25 16:35:36 by samartin         ###   ########.fr       */
+/*   Updated: 2023/04/28 16:30:59 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,22 @@
 
 void	ps_sort_3(t_idxlst **stack_a)
 {
-	if (ps_lst_size (*stack_a) == 2 || ((*stack_a)->value > \
-			(*stack_a)->next->value && (*stack_a)->value < \
-			(*stack_a)->next->next->value))
+	int	n[3];
+
+	n[0] = (*stack_a)->value;
+	n[1] = (*stack_a)->next->value;
+	if ((*stack_a)->next->next)
+		n[2] = (*stack_a)->next->next->value;
+	if (ps_lst_size (*stack_a) == 2 || (n[2] > n[0] && n[0] > n[1]))
 		ps_sa(stack_a);
-	else if ((*stack_a)->value > (*stack_a)->next->value && \
-			(*stack_a)->next->value > (*stack_a)->next->next->value)
+	else if (n[0] > n[1] && n[1] > n[2])
 	{
 		ps_sa(stack_a);
-		ps_ra(stack_a);
+		ps_rra(stack_a);
 	}
-	else if ((*stack_a)->value > (*stack_a)->next->value && \
-			(*stack_a)->next->value < (*stack_a)->next->next->value)
+	else if (n[0] > n[2] && n[2] > n[1])
 		ps_ra(stack_a);
-	else if ((*stack_a)->value < (*stack_a)->next->next->value && \
-			(*stack_a)->next->value > (*stack_a)->next->next->value)
+	else if (n[1] > n[2] && n[2] > n[0])
 	{
 		ps_sa(stack_a);
 		ps_ra(stack_a);
@@ -40,12 +41,8 @@ void	ps_sort_3(t_idxlst **stack_a)
 static void	ps_get_extr(t_idxlst **stack_a, t_idxlst **stack_b, int len)
 {
 	while ((*stack_a)->idx != 0 && (*stack_a)->idx != (len - 1))
-	{
-		ps_rotate(stack_a);
-		ft_printf("ra\n");
-	}
-	ps_push(stack_a, stack_b);
-	ft_printf("pb\n");
+		ps_ra(stack_a);
+	ps_pb(stack_a, stack_b);
 }
 
 void	ps_sort_5(t_idxlst **stack_a)
@@ -60,19 +57,12 @@ void	ps_sort_5(t_idxlst **stack_a)
 		ps_get_extr(stack_a, &stack_b, len);
 	if (!(is_sorted(*stack_a)))
 		ps_sort_3(stack_a);
-	ps_push(&stack_b, stack_a);
-	ft_printf("pa\n");
+	ps_pa(stack_a, &stack_b);
 	while (!(is_sorted(*stack_a)) || (stack_b))
 	{
 		if (!(is_sorted(*stack_a)))
-		{
-			ps_rotate(stack_a);
-			ft_printf("ra\n");
-		}
+			ps_ra(stack_a);
 		if (stack_b)
-		{
-			ps_push(&stack_b, stack_a);
-			ft_printf("pa\n");
-		}
+			ps_pa(stack_a, &stack_b);
 	}
 }

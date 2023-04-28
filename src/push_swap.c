@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 14:17:41 by samartin          #+#    #+#             */
-/*   Updated: 2023/04/25 16:36:48 by samartin         ###   ########.fr       */
+/*   Updated: 2023/04/28 16:26:46 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 void	print_stacks(t_idxlst *stack_a, t_idxlst *stack_b) // TEST ONLY!!!
 {
-	while (stack_a)
+	while (stack_a || stack_b)
 	{
 		if (stack_a)
 		{
-			ft_printf("%i | %i ", stack_a->value, stack_a->idx);
+			ft_printf("v%i | i%i | p%i | t%i", stack_a->value, stack_a->idx, stack_a->cur_pos, stack_a->target_pos);
 			stack_a = stack_a->next;
 		}
 		if (stack_b)
 		{
-			ft_printf("B: %i | %i", stack_b->value, stack_b->idx);
+			ft_printf("  B: v%i | i%i | p%i | t%i", stack_b->value, stack_b->idx, stack_b->cur_pos, stack_b->target_pos);
 			stack_b = stack_b->next;
 		}
 		ft_printf("\n");
@@ -46,9 +46,9 @@ t_idxlst	*push_swap_command_list_generation(t_idxlst *stack_a)
 	else
 	{
 		index_stack(&stack_a);
-		ps_rotative_insertion(stack_a);
-		print_stacks(stack_a, NULL);		
+		ps_rotative_insertion(&stack_a);
 	}
+	print_stacks(stack_a, NULL);	
 	return (stack_a);
 }
 
