@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 13:08:13 by samartin          #+#    #+#             */
-/*   Updated: 2023/04/28 16:12:33 by samartin         ###   ########.fr       */
+/*   Updated: 2023/04/29 16:08:03 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	ps_dump_to_b(t_idxlst **stack_a, t_idxlst **stack_b)
 	stack_sz = init_stack_sz;
 	while (stack_sz > 3)
 	{
-		if (stack_sz < init_stack_sz / 2 || (*stack_a)->idx <= stack_sz / 2)
+		if (stack_sz < (init_stack_sz / 2) + 3 || (*stack_a)->idx < (stack_sz / 2))
 		{
 			ps_pb(stack_a, stack_b);
 			stack_sz--;
@@ -63,7 +63,6 @@ void	ps_rotative_insertion(t_idxlst **stack_a)
 	while (stack_b)
 	{
 		ps_update_pos_idxs(*stack_a, stack_b);
-		print_stacks(*stack_a, stack_b);
 		ps_update_cost(*stack_a, stack_b);
 		//ps_move_less_cost(stack_a, &stack_b);
 	}

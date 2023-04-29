@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 14:17:59 by samartin          #+#    #+#             */
-/*   Updated: 2023/04/28 13:56:04 by samartin         ###   ########.fr       */
+/*   Updated: 2023/04/29 16:13:17 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ typedef struct s_idxlst
 	int				idx;
 	int				cur_pos;
 	int				target_pos;
-	int				cost_up;
-	int				cost_rev;
+	int				cost;
 	struct s_idxlst	*next;
 }	t_idxlst;
 
