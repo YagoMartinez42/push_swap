@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 14:17:59 by samartin          #+#    #+#             */
-/*   Updated: 2023/04/29 16:13:17 by samartin         ###   ########.fr       */
+/*   Updated: 2023/05/03 11:40:35 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void		ps_sort_5(t_idxlst **stack_a);
 void		ps_rotative_insertion(t_idxlst **stack_a);
 void		ps_update_pos_idxs(t_idxlst *stack_a, t_idxlst *stack_b);
 void		ps_update_cost(t_idxlst *stack_a, t_idxlst *stack_b);
+void		ps_move_less_cost(t_idxlst **stack_a, t_idxlst **stack_b);
 
 void	print_stacks(t_idxlst *stack_a, t_idxlst *stack_b);  // TEST ONLY!!!
 #endif

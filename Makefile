@@ -6,7 +6,7 @@
 #    By: samartin <samartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/21 13:44:34 by samartin          #+#    #+#              #
-#    Updated: 2023/04/28 16:34:46 by samartin         ###   ########.fr        #
+#    Updated: 2023/05/02 13:15:03 by samartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ SRC		:= ./src/push_swap.c \
 			./src/push_swap_checks.c \
 			./src/push_swap_exit.c \
 			./src/push_swap_indexing.c \
-			./src/push_swap_index_updates.c \
+			./src/push_swap_insertion_index_updates.c \
+			./src/push_swap_insertion_process.c \
 			./src/push_swap_list.c \
 			./src/push_swap_parse.c \
 			./src/push_swap_parse_utils.c \
