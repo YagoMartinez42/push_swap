@@ -6,30 +6,11 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 14:17:41 by samartin          #+#    #+#             */
-/*   Updated: 2023/05/02 13:01:14 by samartin         ###   ########.fr       */
+/*   Updated: 2023/05/04 14:09:43 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	print_stacks(t_idxlst *stack_a, t_idxlst *stack_b) // TEST ONLY!!!
-{
-	while (stack_a || stack_b)
-	{
-		if (stack_a)
-		{
-			ft_printf("v%i | i%i | p%i | t%i |c%i", stack_a->value, stack_a->idx, stack_a->cur_pos, stack_a->target_pos, stack_a->cost);
-			stack_a = stack_a->next;
-		}
-		if (stack_b)
-		{
-			ft_printf("  B: v%i | i%i | p%i | t%i | c%i", stack_b->value, stack_b->idx, stack_b->cur_pos, stack_b->target_pos, stack_b->cost);
-			stack_b = stack_b->next;
-		}
-		ft_printf("\n");
-	}
-	ft_printf("\n");
-}
 
 t_idxlst	*push_swap_command_list_generation(t_idxlst *stack_a)
 {
@@ -48,20 +29,13 @@ t_idxlst	*push_swap_command_list_generation(t_idxlst *stack_a)
 		index_stack(&stack_a);
 		ps_rotative_insertion(&stack_a);
 	}
-	print_stacks(stack_a, NULL);	
 	return (stack_a);
-}
-
-void	check_leaks(void)
-{
-	system("leaks -q push_swap"); // destroy me.
 }
 
 int	main(int argc, char **argv)
 {
 	t_idxlst	*lst;
 
-	atexit(check_leaks); // ding ! ding !
 	lst = NULL;
 	if (argc < 2)
 		error_exit(101, NULL, NULL);
