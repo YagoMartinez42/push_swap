@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 14:17:41 by samartin          #+#    #+#             */
-/*   Updated: 2023/05/04 14:09:43 by samartin         ###   ########.fr       */
+/*   Updated: 2023/05/09 11:54:00 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 t_idxlst	*push_swap_command_list_generation(t_idxlst *stack_a)
 {
-
 	if (is_sorted(stack_a))
 		error_exit(105, stack_a, NULL);
 	if (ps_lst_size(stack_a) < 4)

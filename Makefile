@@ -6,7 +6,7 @@
 #    By: samartin <samartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/21 13:44:34 by samartin          #+#    #+#              #
-#    Updated: 2023/05/03 16:10:12 by samartin         ###   ########.fr        #
+#    Updated: 2023/05/05 15:08:09 by samartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	:= push_swap
 CC		:= gcc
 LFTDIR  := libft
 LIBFT	:= libft.a
-CFLAGS	:= -Wall -Wextra -Werror
+CFLAGS	:= -Wall -Wextra -Werror -g3
 RM		:= rm -rf
 SRC		:= ./src/push_swap.c \
 			./src/push_swap_action_push.c \

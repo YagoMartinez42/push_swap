@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 13:30:28 by samartin          #+#    #+#             */
-/*   Updated: 2023/05/03 14:23:40 by samartin         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:28:02 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,13 @@ static int	ps_set_target(t_idxlst *stack_a, t_idxlst *node_b)
 			low_idx = stack_a->idx;
 			low_idx_pos = stack_a->cur_pos;
 		}
-		if (node_b->idx < stack_a->idx && (!target_node || target_node->idx > stack_a->idx))
+		if (node_b->idx < stack_a->idx && \
+				(!target_node || target_node->idx > stack_a->idx))
 			target_node = stack_a;
 		stack_a = stack_a->next;
 	}
 	if (!target_node)
-		return(low_idx_pos);
+		return (low_idx_pos);
 	return (target_node->cur_pos);
 }
 

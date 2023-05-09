@@ -1,5 +1,8 @@
 libft.a
 push_swap
+push_swap_visualizer
 checker_Mac
+ps_num_gen.c
+num_gen
 .DS_Store
 .vscode
