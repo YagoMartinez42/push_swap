@@ -6,20 +6,12 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:58:01 by samartin          #+#    #+#             */
-/*   Updated: 2023/05/09 15:05:00 by samartin         ###   ########.fr       */
+/*   Updated: 2023/05/10 14:49:40 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
-/**
- * The function checks if a linked list is sorted in ascending order.
- * 
- * @param lst A pointer to a linked list of integers.
- * 
- * @return The function returns an integer value of 0 or 1. If the list is
- * sorted in ascending order, the function returns 1. Otherwise, it returns 0.
- */
 int	is_sorted(t_idxlst *lst)
 {
 	while (lst && lst->next)
@@ -31,12 +23,6 @@ int	is_sorted(t_idxlst *lst)
 	return (1);
 }
 
-/**
- * The function checks for duplicates in a linked list and exits with an error
- * code if any are found.
- * 
- * @param lst A pointer to a linked list of integers.
- */
 void	check_dupes(t_idxlst *lst)
 {
 	t_idxlst	*i;
@@ -56,15 +42,6 @@ void	check_dupes(t_idxlst *lst)
 	}
 }
 
-/**
- * The function checks if the values in a linked list are within the range of
- * an integer. Iterates through this linked list and checks if any of the
- * integers (stored with a larger than int type) exceed the maximum or minimum
- * value that can be represented by an int data type. If such is found, exits
- * with an error code.
- * 
- * @param lst A pointer to a linked list of integers.
- */
 void	check_int_sized(t_idxlst *lst)
 {
 	t_idxlst	*node;

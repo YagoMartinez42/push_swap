@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 14:17:59 by samartin          #+#    #+#             */
-/*   Updated: 2023/05/09 14:45:25 by samartin         ###   ########.fr       */
+/*   Created: 2023/05/09 14:15:15 by samartin          #+#    #+#             */
+/*   Updated: 2023/05/10 14:52:04 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef CHECKER_H
+# define CHECKER_H
 # include "../libft/libft.h"
 
-/**
- * A struct for indexed lists which contains five variables: a value of type
- * long, and index for sorting, current position, target position if is to be
- * moved to the other stack and cost in number of instructions of its movement;
- * Finaly a pointer to the next node of the same type. It also creates a
- * typedef for this struct called "t_idxlst". This struct is to be used to
- * represent a node in a linked list for a stack in the push_swap program.
- */
 typedef struct s_idxlst
 {
 	long			value;
@@ -32,17 +24,16 @@ typedef struct s_idxlst
 	struct s_idxlst	*next;
 }	t_idxlst;
 
+t_idxlst	*parse_args(size_t argc, char **argv);
+int			*ps_atoi(char **str, int *nbp);
+void		ws_to_space(char *str);
+void		error_exit(int code, t_idxlst *stack_a, t_idxlst *stack_b);
+void		check_dupes(t_idxlst *lst);
+void		check_int_sized(t_idxlst *lst);
 void		ps_lst_add_back(t_idxlst **lst, t_idxlst *newnode);
 t_idxlst	*ps_lst_clear(t_idxlst *lst);
 t_idxlst	*ps_lst_new(long value);
 int			ps_lst_size(t_idxlst *lst);
-t_idxlst	*parse_args(size_t argc, char **argv);
-int			*ps_atoi(char **str, int *nbp);
-void		ws_to_space(char *str);
-void		check_dupes(t_idxlst *lst);
-void		check_int_sized(t_idxlst *lst);
-void		index_stack(t_idxlst **stack);
-void		error_exit(int code, t_idxlst *stack_a, t_idxlst *stack_b);
 void		ps_sa(t_idxlst **stack_a);
 void		ps_sb(t_idxlst **stack_b);
 void		ps_ss(t_idxlst **stack_a, t_idxlst **stack_b);
@@ -55,11 +46,5 @@ void		ps_rra(t_idxlst **stack_a);
 void		ps_rrb(t_idxlst **stack_b);
 void		ps_rrr(t_idxlst **stack_a, t_idxlst **stack_b);
 int			is_sorted(t_idxlst *lst);
-void		ps_sort_3(t_idxlst **stack_a);
-void		ps_sort_5(t_idxlst **stack_a);
-void		ps_rotative_insertion(t_idxlst **stack_a);
-void		ps_update_pos_idxs(t_idxlst *stack_a, t_idxlst *stack_b);
-void		ps_update_cost(t_idxlst *stack_a, t_idxlst *stack_b);
-void		ps_move_less_cost(t_idxlst **stack_a, t_idxlst **stack_b);
 
 #endif

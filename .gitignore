@@ -1,6 +1,7 @@
 libft.a
 push_swap
 push_swap_visualizer
+checker
 checker_Mac
 ps_num_gen.c
 num_gen

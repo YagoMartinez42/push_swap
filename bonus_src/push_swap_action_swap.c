@@ -6,18 +6,12 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 13:29:37 by samartin          #+#    #+#             */
-/*   Updated: 2023/05/09 14:48:46 by samartin         ###   ########.fr       */
+/*   Updated: 2023/05/10 14:49:35 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
-/**
- * This function swaps the positions of the top two elements in a linked list.
- * 
- * @param top A pointer to a pointer to a linked list node. It represents the
- * top node of the linked list.
- */
 void	ps_swap(t_idxlst **top)
 {
 	t_idxlst	*subtop;

@@ -6,12 +6,18 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 12:54:54 by samartin          #+#    #+#             */
-/*   Updated: 2023/04/25 16:02:58 by samartin         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:09:56 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/**
+ * The function assigns an index to each node in a linked list based on their
+ * value, with lowest values receiving the lowest index.
+ * 
+ * @param stack a pointer to a pointer to the head of the stack.
+ */
 void	index_stack(t_idxlst **stack)
 {
 	t_idxlst	*node;
