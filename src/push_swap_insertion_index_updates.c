@@ -6,12 +6,17 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 13:30:28 by samartin          #+#    #+#             */
-/*   Updated: 2023/05/08 15:28:02 by samartin         ###   ########.fr       */
+/*   Updated: 2023/05/11 11:45:04 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/**
+ * The function updates the current position of each element in a linked list.
+ * 
+ * @param stack A pointer to a linked list representing a stack.
+ */
 static void	ps_update_cur_pos(t_idxlst	*stack)
 {
 	int	i;
@@ -25,6 +30,21 @@ static void	ps_update_cur_pos(t_idxlst	*stack)
 	}
 }
 
+/**
+ * The function finds the position of the target node in a stack based on
+ * between which index values of a sorted incomplete stack can fit the index of
+ * the given node located in the other stack. It will instead be the lowest
+ * index of all the stack in case there is no pair to fit between.
+ * 
+ * @param stack_a A pointer to a linked list representing stack A in a sorting
+ * algorithm. A is already sorted at this point but still incomplete.
+ * @param node_b The node we want to find a target position for in the stack A.
+ * 
+ * @return An integer value, which is either the current position of the node
+ * with the lowest index in the stack_a list, or (preferently) the current
+ * position of the node in the stack_a list that has the lowest index greater
+ * than the index of the `node_b` parameter.
+ */
 static int	ps_set_target(t_idxlst *stack_a, t_idxlst *node_b)
 {
 	int			low_idx;
@@ -50,6 +70,18 @@ static int	ps_set_target(t_idxlst *stack_a, t_idxlst *node_b)
 	return (target_node->cur_pos);
 }
 
+/**
+ * The function updates the current positions of all nodes in two stacks and
+ * target positions for all stack_b nodes. This function is to be called after
+ * every sorting action. Each node in the linked list contains a current own
+ * position value and a target position value, which represents the position
+ * that the node should be in after the sorting algorithm is complete.
+ * 
+ * @param stack_a A pointer to a linked list representing the target stack
+ * (stack A) that needs to receive the stack B nodes to finaly be sorted.
+ * @param stack_b A pointer to a linked list representing an auxiliar stack in
+ * this sorting algorithm.
+ */
 void	ps_update_pos_idxs(t_idxlst *stack_a, t_idxlst *stack_b)
 {
 	ps_update_cur_pos(stack_a);
@@ -61,6 +93,16 @@ void	ps_update_pos_idxs(t_idxlst *stack_a, t_idxlst *stack_b)
 	}
 }
 
+/**
+ * The function assigns a cost value to each element in a linked list based on
+ * its position in the list. The cost takes a negative value if the shortest
+ * way to the top is reverse rotation.
+ * 
+ * @param stack A pointer to a linked list representing a stack. Each node of
+ * the linked list contains an integer value for current position "cur_pos" and
+ * a value representing the cost to move it to the top of the stack, which is
+ * updated in this function.
+ */
 static void	ps_get_own_cost(t_idxlst *stack)
 {
 	int	stack_len;
@@ -76,6 +118,16 @@ static void	ps_get_own_cost(t_idxlst *stack)
 	}
 }
 
+/**
+ * The function updates the cost of elements in two stacks based on their
+ * positions and adds the cost of moving the target in A to the cost of moving
+ * the node in B, but only if there are to be opositely moved or one cost is
+ * 0, if they can be moved in the same direction with double action, the cost
+ * will be only the higher of the two.
+ * 
+ * @param stack_a A pointer to a linked list representing stack A (target).
+ * @param stack_b `A pointer to a linked list representing stack B (auxiliar).
+ */
 void	ps_update_cost(t_idxlst *stack_a, t_idxlst *stack_b)
 {
 	t_idxlst	*aux_node;

@@ -6,7 +6,7 @@
 #    By: samartin <samartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/21 13:44:34 by samartin          #+#    #+#              #
-#    Updated: 2023/05/10 14:54:35 by samartin         ###   ########.fr        #
+#    Updated: 2023/05/11 10:28:02 by samartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ BNNAME	:= checker
 CC		:= gcc
 LFTDIR  := libft
 LIBFT	:= libft.a
-CFLAGS	:= -Wall -Wextra -Werror -g3
+CFLAGS	:= -Wall -Wextra -Werror
 RM		:= rm -rf
 SRC		:=	./src/push_swap.c \
 			./src/push_swap_action_push.c \

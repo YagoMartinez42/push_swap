@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 13:08:13 by samartin          #+#    #+#             */
-/*   Updated: 2023/05/09 11:53:41 by samartin         ###   ########.fr       */
+/*   Updated: 2023/05/11 10:24:50 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	ps_dump_to_b(t_idxlst **stack_a, t_idxlst **stack_b)
 	stack_sz = ps_lst_size(*stack_a);
 	too_many_r = 0;
 	segment = stack_sz / 5;
-	while (stack_sz > 3)
+	while (stack_sz > 3 && !(is_sorted(*stack_a)))
 	{
 		if ((*stack_a)->idx <= segment || too_many_r >= 6)
 		{
