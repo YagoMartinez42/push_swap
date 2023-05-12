@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 14:14:18 by samartin          #+#    #+#             */
-/*   Updated: 2023/05/10 14:55:42 by samartin         ###   ########.fr       */
+/*   Updated: 2023/05/12 13:12:11 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		error_exit(101, NULL, NULL);
 	stack_a = parse_args(argc - 1, argv);
+	if (!stack_a)
+		error_exit(102, NULL, NULL);
 	check_dupes(stack_a);
 	check_int_sized(stack_a);
 	move = get_next_line(0);

@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:36:01 by samartin          #+#    #+#             */
-/*   Updated: 2023/05/10 14:50:01 by samartin         ###   ########.fr       */
+/*   Updated: 2023/05/12 13:07:07 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ static t_idxlst	*ft_node_into_list(t_idxlst *lst, int nbr)
 
 	node = ps_lst_new(nbr);
 	if (!node)
+	{
+		lst = ps_lst_clear(lst);
 		return (NULL);
+	}
 	ps_lst_add_back(&lst, node);
 	return (lst);
 }
@@ -62,13 +65,16 @@ static t_idxlst	*make_stack(char *parastr)
 	{
 		nbrp = ps_atoi(&parastr, nbrp);
 		if (!nbrp)
-			return (NULL);
+		{
+			lst = ps_lst_clear(lst);
+			break ;
+		}
 		lst = ft_node_into_list(lst, nbr);
 		if (!lst)
-			return (NULL);
+			break ;
 	}
 	free(aux);
-	if (ps_lst_size(lst) < 1)
+	if (!(ps_lst_size(lst)))
 		return (NULL);
 	return (lst);
 }

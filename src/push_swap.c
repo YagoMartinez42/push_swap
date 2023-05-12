@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 14:17:41 by samartin          #+#    #+#             */
-/*   Updated: 2023/05/10 14:07:55 by samartin         ###   ########.fr       */
+/*   Updated: 2023/05/11 16:06:25 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		error_exit(101, NULL, NULL);
 	lst = parse_args(argc - 1, argv);
+	if (!lst)
+		error_exit(102, NULL, NULL);
 	check_dupes(lst);
 	check_int_sized(lst);
 	lst = push_swap_command_list_generation(lst);
