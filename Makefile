@@ -6,7 +6,7 @@
 #    By: samartin <samartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/21 13:44:34 by samartin          #+#    #+#              #
-#    Updated: 2023/05/12 13:51:31 by samartin         ###   ########.fr        #
+#    Updated: 2023/05/15 11:54:26 by samartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,13 +47,13 @@ BNOBJ	:= ${BNSRC:.c=.o}
 
 all: ${NAME}
 
-${LIBFT}:
+${LFTDIR}${LIBFT}:
 	@make -C ${LFTDIR}
 
-${NAME}: ${OBJ} ${LIBFT}
+${NAME}: ${OBJ} ${LFTDIR}${LIBFT}
 	@${CC} ${OBJ} ${LFTDIR}${LIBFT} -o ${NAME}
 
-${BNNAME}: ${BNOBJ} ${LIBFT}
+${BNNAME}: ${BNOBJ} ${LFTDIR}${LIBFT}
 	@${CC} ${BNOBJ} ${LFTDIR}${LIBFT} -o ${BNNAME}
 
 bonus: ${BNNAME}
