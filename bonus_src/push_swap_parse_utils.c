@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:55:52 by samartin          #+#    #+#             */
-/*   Updated: 2023/05/12 13:02:58 by samartin         ###   ########.fr       */
+/*   Updated: 2023/05/15 11:35:50 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	*ps_atoi(char **str, int *nbp)
 		(*str)++;
 	if (**str == '-')
 		sign = -1;
-	if ((**str == '-' || **str == '+') && *((*str) + 1) >= '0' &&
-		*((*str) + 1) <= '9')
+	if ((**str == '-' || **str == '+') && *((*str) + 1) >= '0' \
+			&& *((*str) + 1) <= '9')
 		(*str)++;
 	while (**str >= '0' && **str <= '9')
 	{
@@ -32,14 +32,11 @@ int	*ps_atoi(char **str, int *nbp)
 		(*str)++;
 	}
 	nb = nb * sign;
+	*nbp = (int)nb;
 	if (nb > __INT_MAX__ || nb < (-(__INT_MAX__) - 1) || \
 			(**str != ' ' && **str != '\0'))
-		return (NULL);
-	else
-	{
-		*nbp = (int)nb;
-		return (nbp);
-	}
+		nbp = NULL;
+	return (nbp);
 }
 
 void	ws_to_space(char *str)
