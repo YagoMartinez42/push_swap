@@ -6,7 +6,7 @@
 #    By: samartin <samartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/21 13:44:34 by samartin          #+#    #+#              #
-#    Updated: 2023/05/15 11:54:26 by samartin         ###   ########.fr        #
+#    Updated: 2023/05/15 15:34:17 by samartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,24 +48,24 @@ BNOBJ	:= ${BNSRC:.c=.o}
 all: ${NAME}
 
 ${LFTDIR}${LIBFT}:
-	@make -C ${LFTDIR}
+	make -C ${LFTDIR}
 
 ${NAME}: ${OBJ} ${LFTDIR}${LIBFT}
-	@${CC} ${OBJ} ${LFTDIR}${LIBFT} -o ${NAME}
+	${CC} ${OBJ} ${LFTDIR}${LIBFT} -o ${NAME}
 
 ${BNNAME}: ${BNOBJ} ${LFTDIR}${LIBFT}
-	@${CC} ${BNOBJ} ${LFTDIR}${LIBFT} -o ${BNNAME}
+	${CC} ${BNOBJ} ${LFTDIR}${LIBFT} -o ${BNNAME}
 
 bonus: ${BNNAME}
 
 clean:
-	@${RM} ${OBJ} ${BNOBJ}
-	@make -C ${LFTDIR} clean
+	${RM} ${OBJ} ${BNOBJ}
+	make -C ${LFTDIR} clean
 
 fclean: clean
-	@${RM} ${NAME}
-	@${RM} ${BNNAME}
-	@${RM} ${LFTDIR}${LIBFT}
+	${RM} ${NAME}
+	${RM} ${BNNAME}
+	${RM} ${LFTDIR}${LIBFT}
 
 re: fclean all
 

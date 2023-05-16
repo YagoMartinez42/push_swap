@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 13:29:37 by samartin          #+#    #+#             */
-/*   Updated: 2023/05/10 14:49:35 by samartin         ###   ########.fr       */
+/*   Updated: 2023/05/15 16:48:47 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ps_swap(t_idxlst **top)
 {
 	t_idxlst	*subtop;
 
-	if (top && (*top)->next)
+	if (top && *top && (*top)->next)
 	{
 		subtop = (*top)->next;
 		(*top)->next = subtop->next;
